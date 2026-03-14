@@ -1,0 +1,37 @@
+---
+title: "Your presentation title<br>second line here"
+subtitle: "Optional subtitle"
+author: "Your Name"
+email: "you@example.com"
+website: "https://yourwebsite.com"
+phone: "+00 (0)0 0000 0000"
+github: "https://github.com/yourusername"
+linkedin: "https://linkedin.com/in/yourusername"
+institution-url: "https://yourinstitution.org"
+img-attribution: "Photographer / source / licence"
+img-attribution-url: "https://source-url.example.com"
+format: quarto-revealjs-mozilla-revealjs
+title-slide-attributes:
+  data-background-image: "images/cover.jpg"
+  data-background-opacity: "0.5"
+---
+
+## Your first slide title 
+{{< source "Author (Year)" url="https://doi.org/..." >}}
+
+Content goes here. Use a blank line between paragraphs.
+
+- First bullet point
+- Second bullet point
+- Third bullet point
+
+## Two-line heading for longer titles<br>that need a second line
+{{< source "Source without a URL" >}}
+
+You can break any heading across two lines with `<br>` in the heading text.
+
+## Full background image slide {background-image="images/cover.jpg" background-opacity="0.5"}
+
+Content rendered over a background image.
+
+Use `background-opacity` to control how visible the image is.

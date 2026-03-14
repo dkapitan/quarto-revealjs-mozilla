@@ -1,0 +1,57 @@
+# Mozilla brand colours and quarto-revealjs-mozilla presentation typography
+# Source: https://mozilla.design/mozilla/#color
+#
+# Colours are named exactly as on the Mozilla brand page.
+# The palette also includes two custom additions used by this theme:
+#   sand  — slide background (#faf8d9, matches the original sand-blue slides.com theme)
+#   near-black — body text (#111111)
+
+color:
+  palette:
+    # ── Mozilla primary colours ──────────────────────────────────────────────
+    black:        "#000000"
+    white:        "#ffffff"
+    neon-blue:    "#00ffff"
+    lemon-yellow: "#fff44f"
+    warm-red:     "#ff4f5e"
+    neon-green:   "#54ffbd"
+    dark-purple:  "#6e008b"
+    # ── Mozilla secondary colours ────────────────────────────────────────────
+    dark-green:   "#005e5e"
+    dark-blue:    "#00458b"
+    dark-grey:    "#959595"
+    light-grey:   "#e7e5e2"
+    # ── quarto-revealjs-mozilla theme additions ──────────────────────────────
+    sand:         "#faf8d9"   # slide background (sand-blue theme origin)
+    near-black:   "#111111"   # body text
+
+  # ── Semantic colour roles ─────────────────────────────────────────────────
+  foreground: near-black
+  background: light-grey
+  primary:    warm-red       # links, controls, progress bar, list markers
+
+typography:
+  fonts:
+    - family: "Zilla Slab"
+      source: google
+    - family: "Zilla Slab Highlight"
+      source: google
+    - family: "Fira Sans"
+      source: google
+    - family: "Fira Code"
+      source: google
+  base:
+    family: "Fira Sans"
+  headings:
+    family: "Zilla Slab"
+    weight: 600
+    color: near-black
+  monospace:
+    family: "Fira Code"
+    color: dark-purple
+  link:
+    color: warm-red
+    decoration: none
+
+logo:
+  small: images/logo-eaisi.png

@@ -1,0 +1,399 @@
+/*-- scss:defaults --*/
+
+// ── Colour tokens ─────────────────────────────────────────────────────────────
+// Fonts and named colours are defined in _brand.yml.
+// Quarto injects brand variables ($link-color, $body-color, $code-color, etc.)
+// BEFORE scss:defaults runs, so we can wire directly from those variables here.
+$accent:              $link-color !default;   // warm-red via _brand.yml color.primary
+$link-color-hover:    darken($accent, 12%) !default;
+$selection-bg:        lighten($accent, 30%) !default;
+$selection-color:     $body-color !default;   // near-black via _brand.yml color.foreground
+$light-bg-code-color: $code-color !default;   // dark-purple via _brand.yml typography.monospace.color
+
+// ── Typography scale & layout ─────────────────────────────────────────────────
+// Font families come from _brand.yml; only sizing/spacing overrides live here.
+$presentation-font-size-root: 40px !default;
+$presentation-line-height:    1.35 !default;
+$presentation-heading-line-height:    1.1 !default;
+$presentation-heading-letter-spacing: normal !default;
+$presentation-h1-font-size:           2.2em !default;
+$presentation-h2-font-size:           1.6em !default;
+$presentation-h3-font-size:           1.2em !default;
+
+// ── Layout ────────────────────────────────────────────────────────────────────
+$presentation-slide-text-align:       left !default;
+$presentation-title-slide-text-align: left !default;
+$presentation-block-margin:           12px !default;
+
+/*-- scss:rules --*/
+
+// ── Font shorthand (from _brand.yml typography.monospace.family) ──────────────
+$font-monospace: $font-family-monospace, monospace;
+
+// ── Cover/title slide: Zilla Slab Highlight for H1 ───────────────────────────
+// _brand.yml sets Zilla Slab for all headings; this overrides the title H1
+// specifically with the decorative Highlight variant (not expressible in brand.yml).
+.reveal .slides section.title-slide h1,
+.reveal .slides section.quarto-title-block h1,
+.reveal .slides section.cover-slide h1 {
+  font-family: "Zilla Slab Highlight", "Zilla Slab", serif;
+  font-weight: 700;
+}
+
+// ── H2 line height (tighter than global heading default of 1.1) ───────────────
+.reveal .slides section h2 {
+  line-height: 1.1;
+}
+
+// ── Link hover ────────────────────────────────────────────────────────────────
+// _brand.yml sets link colour and font (Fira Sans, inherited from body).
+// This rule adds hover styling only.
+.reveal .slides a:hover {
+  color: $link-color-hover;
+  text-decoration: underline;
+}
+
+// ── List markers: coral › symbol ──────────────────────────────────────────────
+.reveal .slides ul > li::marker {
+  content: "›  ";
+  color: $accent;
+}
+
+// ── Reveal.js menu button → top-right ────────────────────────────────────────
+.reveal .slide-menu-button {
+  position: fixed;
+  top: 6px;
+  right: 0;
+  left: auto;
+  bottom: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.reveal .slide-menu-button > * {
+  pointer-events: auto;
+}
+
+// ── Navigation controls → bottom-right (above slide number) ──────────────────
+.reveal .controls {
+  position: fixed;
+  bottom: 28px;
+  right: 8px;
+  left: auto;
+  top: auto;
+  color: $accent;
+}
+
+// ── Slide number → bottom-right ───────────────────────────────────────────────
+.reveal .slide-number {
+  font-family: $font-monospace;
+  font-size: 0.55em;
+  background: transparent;
+  color: rgba(0,0,0,0.45);
+}
+
+// ── Progress bar ──────────────────────────────────────────────────────────────
+.reveal .progress span {
+  background: $accent;
+}
+
+// ── Heading separator rule ────────────────────────────────────────────────────
+// Emitted as <hr class="heading-rule"> by the {{< source >}} shortcode.
+// CSS owns the appearance; Lua owns the injection.
+.reveal .slides section .heading-rule {
+  border: none;
+  border-top: 2px solid $body-color;
+  margin: 0.15em 0 0.3em 0;
+  width: 100%;
+  display: block;
+}
+
+// ── Reduce gap between H2 and source line / heading rule ─────────────────────
+// The default heading bottom margin ($presentation-block-margin = 12px) leaves
+// too much space between the slide title and the source/rule below it.
+// The adjacent-sibling selector scopes the reduction without touching other h2
+// margins elsewhere on the slide.
+.reveal .slides section h2 + .slide-source {
+  margin-top: -0.3em;
+}
+.reveal .slides section h2 + .heading-rule {
+  margin-top: 0.1em;
+}
+
+// ── Source / reference line ───────────────────────────────────────────────────
+// Emitted as <p class="slide-source"> by the {{< source >}} shortcode.
+.reveal .slides section .slide-source {
+  font-size: 0.6em;
+  color: rgba($body-color, 0.55);
+  margin: 0 0 0.5em 0;
+  line-height: 1.2;
+}
+.reveal .slides section .slide-source a {
+  color: $accent;
+  text-decoration: none;
+}
+.reveal .slides section .slide-source a:hover {
+  text-decoration: underline;
+}
+
+// ── Content slide: anchor heading to top ─────────────────────────────────────
+// reveal.js default theme centres content vertically; override for non-title slides.
+.reveal .slides section:not(.title-slide) {
+  justify-content: flex-start;
+  padding-top: 0;
+}
+
+// ── Title slide layout ────────────────────────────────────────────────────────
+// Positions content toward vertical centre-bottom of the slide.
+// Works with full-bleed background-image + opacity from title-slide-attributes.
+.reveal .slides section.title-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 20%;
+  padding-bottom: 0;
+  text-align: left;
+}
+
+// H1 on title slide: larger, Highlight font, allows <br> line-break
+.reveal .slides section.title-slide h1.title {
+  font-family: "Zilla Slab Highlight", "Zilla Slab", serif;
+  font-weight: 700;
+  font-size: 1.8em;
+  line-height: 1.2;
+  margin-bottom: 0.4em;
+  // Keep readable over background images
+  text-shadow: 0 1px 3px rgba(255,255,255,0.3);
+}
+
+// Subtitle line
+.reveal .slides section.title-slide p.subtitle {
+  font-size: 1.1em;
+  font-weight: 400;
+  margin-bottom: 0.6em;
+  color: $body-color;
+}
+
+// Author name
+.reveal .slides section.title-slide .title-author {
+  font-weight: 600;
+  font-size: 0.85em;
+  margin: 0 0 0.2em 0;
+  color: $body-color;
+}
+
+// Contact block (phone / email / website)
+.reveal .slides section.title-slide .title-contact {
+  font-family: $font-monospace;
+  font-size: 0.55em;
+  line-height: 1.7;
+  margin: 0 0 0.5em 0;
+  color: $body-color;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  text-align: left;
+  white-space: pre;
+}
+.reveal .slides section.title-slide .title-contact a {
+  color: $body-color;
+  font-family: $font-monospace;
+  text-decoration: none;
+}
+.reveal .slides section.title-slide .title-contact a:hover {
+  text-decoration: underline;
+}
+
+// Social icons row (GitHub, LinkedIn)
+.reveal .slides section.title-slide .social-icons {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+  margin-top: 0.3em;
+  flex-wrap: wrap;
+}
+.reveal .slides section.title-slide .social-icons a {
+  color: $body-color;
+  font-family: $font-monospace;
+  font-size: 0.6em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  opacity: 0.85;
+}
+.reveal .slides section.title-slide .social-icons a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+.reveal .slides section.title-slide .social-icons svg {
+  flex-shrink: 0;
+}
+
+// ── Image attribution (bottom-left corner, over background images) ────────────
+// Used on non-title slides with a photo background.
+.reveal .slides section .img-attribution {
+  position: absolute;
+  bottom: 6px;
+  left: 8px;
+  font-size: 0.32em;
+  font-family: $font-monospace;
+  color: rgba(0,0,0,0.55);
+  text-align: left;
+  line-height: 1.3;
+  pointer-events: none;
+}
+// On the title slide, attribution is in normal flow inside .title-meta
+.reveal .slides section.title-slide .img-attribution {
+  position: static;
+  font-size: 12px;
+  font-family: $font-monospace;
+  color: rgba(0,0,0,0.55);
+  margin-top: 1em;
+  pointer-events: auto;
+}
+.reveal .slides section .img-attribution a {
+  color: rgba(0,0,0,0.55);
+  font-family: $font-monospace;
+  text-decoration: none;
+  pointer-events: auto;
+}
+.reveal .slides section .img-attribution a:hover {
+  text-decoration: underline;
+}
+
+// ── Institution logo (bottom-right of title slide) ────────────────────────────
+.reveal .slides section.title-slide .institution-logo {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+.reveal .slides section.title-slide .institution-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+.reveal .slides section.title-slide .institution-logo a {
+  display: block;
+  opacity: 0.85;
+}
+.reveal .slides section.title-slide .institution-logo a:hover {
+  opacity: 1;
+}
+
+// ── Slide logo (bottom-left on all non-title slides) ──────────────────────────
+.slide-logo {
+  display: block !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 10px !important;
+  max-width: 150px;
+  max-height: 50px;
+  width: auto !important;
+  color: $body-color !important;
+}
+
+// Suppress native slide-logo on title slide (title slide uses institution-logo instead)
+// data-state="no-logo" on the title section causes reveal.js to add .no-logo to
+// the .reveal root, where the logo element actually lives (appended by support.js).
+.no-logo .slide-logo {
+  display: none !important;
+}
+
+// ── Hide slide number on title slide (data-state="no-slide-number") ───────────
+.no-slide-number .slide-number {
+  display: none !important;
+}
+
+// ── Keep slide number bottom-right (with or without logo) ─────────────────────
+// Mirrors the combined selector from quarto-revealjs-clean.
+// Without this, Quarto shifts the slide number upward when .has-logo is present.
+.slide-number, .reveal.has-logo .slide-number {
+  bottom: 6px !important;
+  right: 10px !important;
+  top: unset !important;
+}
+
+// ── Card grid layout helper ───────────────────────────────────────────────────
+// Usage:
+//   ::: {.card-grid}
+//   ::: {.card}
+//   ### Card title
+//   Card body text
+//   :::
+//   :::
+.reveal .slides .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9em;
+  margin-top: 0.4em;
+}
+.reveal .slides .card-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.reveal .slides .card-grid.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.reveal .slides .card {
+  background-color: rgba(190, 190, 190, 0.2);
+  border-radius: 10px;
+  padding: 0.8em 1em;
+}
+.reveal .slides .card p:first-child {
+  margin-top: 0;
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 0.2em;
+}
+.reveal .slides .card p {
+  font-size: 0.8em;
+  margin-bottom: 0;
+}
+
+// ── Coloured background slides: light-on-dark text inversion ─────────────────
+// Quarto adds .has-dark-background when background is dark.
+// Keeps the accent readable on dark backgrounds.
+.reveal .slides section.has-dark-background a {
+  color: lighten($accent, 15%);
+}
+.reveal .slides section.has-dark-background .slide-source,
+.reveal .slides section.has-dark-background .slide-source a {
+  color: rgba(255,255,255,0.75);
+}
+.reveal .slides section.has-dark-background .heading-rule {
+  border-top-color: rgba(255,255,255,0.6);
+}
+
+// ── Table styling (matches sand-blue theme grey table) ────────────────────────
+.reveal .slides table {
+  border-collapse: collapse;
+  font-size: 0.78em;
+  width: 100%;
+}
+.reveal .slides table thead tr {
+  background-color: rgba(100,100,100,0.25);
+}
+.reveal .slides table th {
+  font-weight: 600;
+  padding: 0.4em 0.6em;
+  border-bottom: 2px solid $body-color;
+  text-align: left;
+}
+.reveal .slides table td {
+  padding: 0.35em 0.6em;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  text-align: left;
+}
+.reveal .slides table tbody tr:nth-child(even) {
+  background-color: rgba(204,204,204,0.15);
+}
+
+// ── Blockquote styling ────────────────────────────────────────────────────────
+.reveal .slides blockquote {
+  border-left: 4px solid $accent;
+  padding-left: 1em;
+  background: rgba($accent, 0.05);
+  font-style: italic;
+}

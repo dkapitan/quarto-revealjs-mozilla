@@ -1,0 +1,8 @@
+.DS_Store
+/.quarto/
+*_files/
+*_cache/
+template.html
+example/example.html
+
+/.luarc.json
