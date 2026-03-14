@@ -21,7 +21,7 @@ title-slide-attributes:
 
 A regular content slide. The heading separator rule is injected automatically by `heading-rule.lua`.
 
-- List markers use a small chevron "›"  in warm-red
+- List markers use a small chevron "›"  in warm red
 - Body font is **Fira Sans**; headings use **Zilla Slab**
 - Link color is warm red: <https://quarto.org>
 - Code text in dark purple

@@ -43,8 +43,9 @@ When implementing or choosing how to express a feature, follow this priority ord
 
 ```
 ├── _brand.yml                        Brand colours, fonts, semantic roles, logo
+├── _quarto.yml                       Project config; sets output-dir: docs for CI/GitHub Pages
 ├── template.qmd                      Starter template (copied on quarto use template)
-├── example.qmd                       Example presentation (rendered to example.html)
+├── example.qmd                       Example presentation (rendered to docs/index.html via CI)
 ├── AGENTS.md                         This file
 ├── README.md                         User-facing documentation
 ├── images/

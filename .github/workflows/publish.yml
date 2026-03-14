@@ -25,12 +25,12 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render example.qmd
-        run: quarto render example.qmd --output-dir _site --output index.html
+        run: quarto render example.qmd --output index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: docs
 
   deploy:
     needs: build

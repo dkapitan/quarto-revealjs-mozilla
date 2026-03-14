@@ -1,7 +1,2 @@
 # Files excluded when users run `quarto use template`
-PLAN.md
 README.md
-example/
-slides_data-engineering/
-assets/
-masterclass-data-engineering.md

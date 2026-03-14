@@ -4,5 +4,8 @@
 *_cache/
 template.html
 example/example.html
+docs/
 
 /.luarc.json
+
+**/*.quarto_ipynb

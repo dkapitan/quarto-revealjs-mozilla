@@ -7,6 +7,8 @@ website: "https://yourwebsite.com"
 phone: "+00 (0)0 0000 0000"
 github: "https://github.com/yourusername"
 linkedin: "https://linkedin.com/in/yourusername"
+institution: "Your Institution"       # used as logo alt text
+# institution-logo: "images/logo.png" # auto-injected from _brand.yml logo.small; override here if needed
 institution-url: "https://yourinstitution.org"
 img-attribution: "Photographer / source / licence"
 img-attribution-url: "https://source-url.example.com"

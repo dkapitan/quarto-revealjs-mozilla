@@ -53,6 +53,8 @@ title-slide-attributes:
 
 Use `<br>` in the `title` field to break it across two lines.
 
+The `institution` field is used as the `alt` attribute on the logo image — it is not rendered as visible text. To display institution text, add it to `subtitle` or `author`.
+
 The `img-attribution` / `img-attribution-url` fields add a small attribution line in the bottom-right corner of the title slide, useful when using a licensed cover photograph.
 
 ## Shortcode: `{{< source >}}`
@@ -64,7 +66,7 @@ Place a source citation below any slide heading:
 {{< source "Author (Year)" url="https://doi.org/..." >}}
 ```
 
-This renders a thin horizontal rule followed by a small italic citation. The `url=` argument is optional — omit it for unpublished or original work:
+This renders a small citation line followed by a thin horizontal rule. The `url=` argument is optional — omit it for unpublished or original work:
 
 ```markdown
 {{< source "own work" >}}

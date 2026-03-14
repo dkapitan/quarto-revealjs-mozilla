@@ -100,8 +100,8 @@ $font-monospace: $font-family-monospace, monospace;
 }
 
 // ── Heading separator rule ────────────────────────────────────────────────────
-// Emitted as <hr class="heading-rule"> by the {{< source >}} shortcode.
-// CSS owns the appearance; Lua owns the injection.
+// Emitted by heading-rule.lua (slides without {{< source >}}) or by
+// source.lua (slides that use {{< source >}}). CSS owns appearance; Lua owns injection.
 .reveal .slides section .heading-rule {
   border: none;
   border-top: 2px solid $body-color;
@@ -320,7 +320,7 @@ $font-monospace: $font-family-monospace, monospace;
 // Usage:
 //   ::: {.card-grid}
 //   ::: {.card}
-//   ### Card title
+//   **Card title**
 //   Card body text
 //   :::
 //   :::

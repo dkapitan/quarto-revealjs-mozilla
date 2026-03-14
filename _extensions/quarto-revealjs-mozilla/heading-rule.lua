@@ -23,8 +23,6 @@ local function is_shortcode_para(block)
   return inline.attr.attributes["__quarto_custom_type"] == "Shortcode"
 end
 
-local rule = pandoc.RawBlock("html", '<hr class="heading-rule">')
-
 function Pandoc(doc)
   if not quarto.doc.isFormat("revealjs") then
     return nil
@@ -41,8 +39,8 @@ function Pandoc(doc)
         -- A {{< source >}} shortcode follows: skip injecting <hr> here.
         -- source.lua will emit slide-source + <hr> after shortcode expansion.
       else
-        -- No shortcode: inject <hr> immediately after the heading.
-        blocks:insert(rule)
+        -- No shortcode: inject a fresh <hr> immediately after the heading.
+        blocks:insert(pandoc.RawBlock("html", '<hr class="heading-rule">'))
       end
     end
     i = i + 1
