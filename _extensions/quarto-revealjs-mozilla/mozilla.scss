@@ -397,3 +397,24 @@ $font-monospace: $font-family-monospace, monospace;
   background: rgba($accent, 0.05);
   font-style: italic;
 }
+
+// ── New section slide styling ────────────────────────────────────────────────────────
+$h1-banner-color: #111111 !default;  // near-black from _brand.yml color.palette
+.newsection {
+  font-family: "Zilla Slab", serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  padding-top: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0.05em 5%;
+  background: var(--h1-banner-color, #{$h1-banner-color});
+  color: var(--h1-banner-text-color, white);
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 1;
+}

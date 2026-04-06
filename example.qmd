@@ -16,6 +16,12 @@ title-slide-attributes:
   data-background-opacity: "0.5"
 ---
 
+# 
+
+:::{.newsection}
+Banner title of the new section
+:::
+
 ## Basic slide with source citation
 {{< source "Mozilla Brand Guidelines" url="https://mozilla.design/mozilla/" >}}
 

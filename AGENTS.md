@@ -73,6 +73,7 @@ When implementing or choosing how to express a feature, follow this priority ord
 | Title slide logo | `.reveal .slides section.title-slide .institution-logo` (absolute, bottom-right) |
 | Hide slide# on title | `.no-slide-number .slide-number { display: none }` via `data-state="no-slide-number"` |
 | Suppress logo on title | `.no-logo .slide-logo { display: none }` via `data-state="no-slide-number no-logo"` on title section |
+| Banner for new section | `.newsection` |
 
 ---
 
