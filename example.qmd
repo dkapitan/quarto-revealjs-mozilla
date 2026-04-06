@@ -16,8 +16,6 @@ title-slide-attributes:
   data-background-opacity: "0.5"
 ---
 
-# New section {background-image="images/talking-to-ai.jpg"}
-
 ## Basic slide with source citation
 {{< source "Mozilla Brand Guidelines" url="https://mozilla.design/mozilla/" >}}
 

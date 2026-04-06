@@ -25,22 +25,16 @@ $presentation-slide-text-align:       left !default;
 $presentation-title-slide-text-align: left !default;
 $presentation-block-margin:           12px !default;
 
-// ── Section-slide H1 banner ───────────────────────────────────────────────────
-// Default banner colour; override per slide via CSS custom property:
-//   # My heading {style="--h1-banner-color: #0060df;"}
-$h1-banner-color: #111111 !default;  // near-black from _brand.yml color.palette
-
 /*-- scss:rules --*/
 
 // ── Font shorthand (from _brand.yml typography.monospace.family) ──────────────
 $font-monospace: $font-family-monospace, monospace;
 
 // ── Cover/title slide: Zilla Slab Highlight for H1 ───────────────────────────
-// _brand.yml sets Zilla Slab for all headings; this overrides the opening title H1
+// _brand.yml sets Zilla Slab for all headings; this overrides the title H1
 // specifically with the decorative Highlight variant (not expressible in brand.yml).
-// .quarto-title-block is present only on the actual opening title slide, not on
-// section-divider slides (which also carry class="title-slide slide level1").
-.reveal .slides section.title-slide.quarto-title-block h1,
+.reveal .slides section.title-slide h1,
+.reveal .slides section.quarto-title-block h1,
 .reveal .slides section.cover-slide h1 {
   font-family: "Zilla Slab Highlight", "Zilla Slab", serif;
   font-weight: 700;
@@ -149,31 +143,6 @@ $font-monospace: $font-family-monospace, monospace;
 .reveal .slides section:not(.title-slide) {
   justify-content: flex-start;
   padding-top: 0;
-}
-
-// ── Section-divider slide: H1 banner at 40% from top ─────────────────────────
-// Quarto renders `# Heading` as <section class="title-slide slide level1">
-// (confusingly, Quarto reuses the "title-slide" class for all level-1 sections).
-// We disambiguate by targeting `.slide.level1` while excluding the actual
-// opening title slide (which also carries #title-slide id and .quarto-title-block).
-// Per-slide colour: # My heading {style="--h1-banner-color: #0060df;"}
-// Per-slide text colour (optional): add --h1-banner-text-color: #fff;
-.reveal .slides section.slide.level1:not(.quarto-title-block) {
-  position: relative;
-}
-.reveal .slides section.slide.level1:not(.quarto-title-block) > h1 {
-  position: absolute;
-  top: 40%;
-  left: 0;
-  right: 0;
-  width: 100%;
-  margin: 0;
-  padding: 0.11em 5%;
-  background: var(--h1-banner-color, #{$h1-banner-color});
-  color: var(--h1-banner-text-color, white);
-  box-sizing: border-box;
-  text-align: center;
-  line-height: 1.1;
 }
 
 // ── Title slide layout ────────────────────────────────────────────────────────

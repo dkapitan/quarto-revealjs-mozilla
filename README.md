@@ -111,28 +111,6 @@ Right content
 ## Heading {background-image="images/photo.jpg" background-opacity="0.4"}
 ```
 
-### Section divider slide
-
-Use a level-1 heading (`#`) to create a section divider. The heading is rendered
-as a full-width banner positioned 40% from the top of the slide, in Zilla Slab,
-white text on a near-black (`#111111`) background.
-
-```markdown
-# Section title
-```
-
-Override the banner colour for a specific slide using a CSS custom property:
-
-```markdown
-# Section title {style="--h1-banner-color: #0060df;"}
-```
-
-Override both banner and text colour:
-
-```markdown
-# Section title {style="--h1-banner-color: #0060df; --h1-banner-text-color: #ffffff;"}
-```
-
 ### Large centred text over background (section divider)
 
 ```markdown
