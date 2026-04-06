@@ -73,6 +73,7 @@ When implementing or choosing how to express a feature, follow this priority ord
 | Title slide logo | `.reveal .slides section.title-slide .institution-logo` (absolute, bottom-right) |
 | Hide slide# on title | `.no-slide-number .slide-number { display: none }` via `data-state="no-slide-number"` |
 | Suppress logo on title | `.no-logo .slide-logo { display: none }` via `data-state="no-slide-number no-logo"` on title section |
+| Section-divider H1 banner | `.reveal .slides section.slide.level1:not(.quarto-title-block) > h1` (absolute, top 40%, full width) |
 
 ---
 
@@ -83,6 +84,7 @@ When implementing or choosing how to express a feature, follow this priority ord
 - **Slide number** — `bottom: 6px; right: 10px` (enforced via combined selector `.slide-number, .reveal.has-logo .slide-number`)
 - **Slide logo** — `fixed; bottom: 0; left: 10px`
 - **Institution logo** — `absolute; bottom: 16px; right: 16px` (title slide only)
+- **Section-divider H1 banner** — `absolute; top: 40%; left: 0; right: 0; width: 100%` (within reveal.js content container)
 
 ---
 
@@ -98,8 +100,9 @@ When implementing or choosing how to express a feature, follow this priority ord
 - **Title slide:** Uses a full Pandoc partial (`title-slide.html`). `data-state="no-slide-number no-logo"` hides the slide number (`.no-slide-number .slide-number { display: none }`) and suppresses the native `.slide-logo` (`.no-logo .slide-logo { display: none }`) so only the `institution-logo` appears
 - **Background colour from `_brand.yml`:** `color.background: light-grey` in `_brand.yml` correctly propagates through `$body-bg` → `$backgroundColor` → `--r-background-color: #e7e5e2` in the compiled CSS. No SCSS override is needed — the brand layer sets this correctly before all framework defaults. Confirmed via `QUARTO_SAVE_SCSS` debug output and inspecting the compiled theme CSS.
 - **Brand variables available in `scss:defaults`:** Quarto injects `_brand.yml` typography and colour variables (`$link-color`, `$body-color`, `$code-color`, `$font-family-monospace`, etc.) **before** `/*-- scss:defaults --*/` runs. All `mozilla.scss` defaults wire directly from these brand variables (no literal fallback values needed). The `$accent: $link-color !default` wiring is done in `scss:defaults`, not in `scss:rules`.
-- **All colour literals replaced:** `mozilla.scss` uses only Sass variables — no hardcoded hex values for brand colours anywhere. `$accent: $link-color !default` in `scss:defaults` wires accent to brand primary. `$light-bg-code-color: $code-color !default` picks up `dark-purple` from brand monospace colour. Blockquote background uses `rgba($accent, 0.05)`.
+- **All colour literals replaced:** `mozilla.scss` uses only Sass variables — no hardcoded hex values for brand colours anywhere, **except** `$h1-banner-color: #111111`. That one literal is unavoidable because Quarto only injects semantic role variables (`$link-color`, `$body-color`, etc.) into SCSS — named palette entries such as `near-black` are not available as Sass variables.
 - **`controls` colour:** `.reveal .controls` sets `color: $accent` directly on the container — no separate `.controls button` rule needed (inherited by child buttons).
+- **Section-slide class quirk:** Quarto renders `# Heading` section-divider slides as `<section class="title-slide slide level1">` — it reuses the `title-slide` class for *all* level-1 headings, not just the opening title slide. The actual opening title slide also carries `class="quarto-title-block"`. Use `.slide.level1:not(.quarto-title-block)` to target section dividers without catching the title slide. `:not(.title-slide)` will **not** work for this purpose.
 - **Links inherit Fira Sans:** No explicit `font-family` rule on links — they inherit the body font (`--r-main-font: Fira Sans`) set globally on `.reveal`. `$font-monospace` Sass variable (= `$font-family-monospace, monospace`) is used for all Fira Code references (slide number, contact info, attribution, social icons) instead of string literals.
 - **Card grid — no `###` headings inside cards:** In revealjs, headings inside fenced divs (`::: {.card}`) are promoted to `<section>` elements by Pandoc, breaking the grid layout. Use bold paragraphs (`**Title**`) for card titles instead. The `.card p:first-child` rule in `mozilla.scss` styles the first paragraph as a title.
 
