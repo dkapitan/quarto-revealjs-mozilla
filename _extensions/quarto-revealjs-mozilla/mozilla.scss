@@ -145,27 +145,6 @@ $font-monospace: $font-family-monospace, monospace;
   padding-top: 0;
 }
 
-// ── Figure alignment: centre by default (content slides only) ─────────────────
-// Captioned images: Pandoc wraps in <figure class="quarto-figure"> or plain <figure>
-.reveal .slides section:not(.title-slide) figure,
-.reveal .slides section:not(.title-slide) .quarto-figure {
-  display: flex;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-// Bare images: ![](img.png) renders as <p><img></p>, not <figure>
-// Centre the <p> when it contains only an image, and make the img a block.
-.reveal .slides section:not(.title-slide) p:has(> img:only-child) {
-  text-align: center;
-}
-.reveal .slides section:not(.title-slide) p > img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 // ── Title slide layout ────────────────────────────────────────────────────────
 // Positions content toward vertical centre-bottom of the slide.
 // Works with full-bleed background-image + opacity from title-slide-attributes.

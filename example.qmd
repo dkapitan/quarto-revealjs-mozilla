@@ -139,3 +139,6 @@ You can break any heading across two lines with `<br>` in the heading text.
 
 The heading rule always spans the full slide width beneath the heading.
 
+## Figures - with or without caption - are center-aligened by default
+
+![](images/big-data-is-dead.webp)

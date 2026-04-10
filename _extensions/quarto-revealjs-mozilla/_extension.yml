@@ -26,3 +26,4 @@ contributes:
       progress: true
       hash: true
       preview-links: auto
+      fig-align: center
