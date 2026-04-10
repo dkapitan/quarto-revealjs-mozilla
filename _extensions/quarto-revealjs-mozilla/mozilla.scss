@@ -145,6 +145,16 @@ $font-monospace: $font-family-monospace, monospace;
   padding-top: 0;
 }
 
+// ── Figure alignment: centre by default (content slides only) ─────────────────
+.reveal .slides section:not(.title-slide) figure,
+.reveal .slides section:not(.title-slide) .quarto-figure {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 // ── Title slide layout ────────────────────────────────────────────────────────
 // Positions content toward vertical centre-bottom of the slide.
 // Works with full-bleed background-image + opacity from title-slide-attributes.
