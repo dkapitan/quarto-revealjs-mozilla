@@ -6,6 +6,8 @@ contributes:
   shortcodes:
     - source.lua
   formats:
+    common:
+      fig-align: center
     revealjs:
       filters:
         - logo.lua
@@ -26,4 +28,4 @@ contributes:
       progress: true
       hash: true
       preview-links: auto
-      fig-align: center
+      

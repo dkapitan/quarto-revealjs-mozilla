@@ -398,6 +398,17 @@ $font-monospace: $font-family-monospace, monospace;
   font-style: italic;
 }
 
+// ── Auto-stretch images: center horizontally ─────────────────────────────────
+// When auto-stretch is enabled (the default), Quarto renders lone images as a
+// bare <img class="r-stretch"> instead of going through the figure pipeline.
+// fig-align therefore has no effect on these images; centering must be done
+// via CSS on the .r-stretch class directly.
+.reveal .slides section img.r-stretch {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 // ── New section slide styling ────────────────────────────────────────────────────────
 $h1-banner-color: #111111 !default;  // near-black from _brand.yml color.palette
 .newsection {
