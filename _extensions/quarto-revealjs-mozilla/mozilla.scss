@@ -17,7 +17,7 @@ $presentation-line-height:    1.35 !default;
 $presentation-heading-line-height:    1.1 !default;
 $presentation-heading-letter-spacing: normal !default;
 $presentation-h1-font-size:           2.2em !default;
-$presentation-h2-font-size:           1.6em !default;
+$presentation-h2-font-size:           1.2em !default;
 $presentation-h3-font-size:           1.2em !default;
 
 // ── Layout ────────────────────────────────────────────────────────────────────
@@ -125,7 +125,7 @@ $font-monospace: $font-family-monospace, monospace;
 // ── Source / reference line ───────────────────────────────────────────────────
 // Emitted as <p class="slide-source"> by the {{< source >}} shortcode.
 .reveal .slides section .slide-source {
-  font-size: 0.6em;
+  font-size: 0.4em;
   color: rgba($body-color, 0.55);
   margin: 0 0 0.5em 0;
   line-height: 1.2;
