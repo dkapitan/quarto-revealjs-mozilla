@@ -45,6 +45,12 @@ $font-monospace: $font-family-monospace, monospace;
   line-height: 1.1;
 }
 
+// ── Links ─────────────────────────────────────────────────────────────────────
+// Ensure links use accent color on both light and dark backgrounds.
+.reveal .slides a {
+  color: $accent;
+}
+
 // ── Link hover ────────────────────────────────────────────────────────────────
 // _brand.yml sets link colour and font (Fira Sans, inherited from body).
 // This rule adds hover styling only.
